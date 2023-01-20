@@ -13,6 +13,6 @@ public class Timer : MonoBehaviour
 
     public void VisualizeTimer(float timeNormalized)
     {
-        tf.localScale = new Vector3(timeNormalized, 1f, 1f);
+        tf.localScale = new Vector3(Mathf.Round(timeNormalized * 157f) / 157f, 1f, 1f);
     }
 }

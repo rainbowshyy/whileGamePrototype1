@@ -35,11 +35,14 @@ public class Enemy : MonoBehaviour
 
         SetData(enemyData);
 
-        UpdateEnemytransform();
-
         GameManager.onTick += DoTick;
         GameManager.onNewTick += DoNewTick;
 
+    }
+
+    private void Start()
+    {
+        UpdateEnemytransform();
     }
 
     public void SetData(EnemyData ed)

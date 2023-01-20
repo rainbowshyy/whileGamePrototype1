@@ -37,6 +37,11 @@ public class GameManager : MonoBehaviour
         timeUntilTick = timeEachTick;
     }
 
+    private void Start()
+    {
+        onNewTick?.Invoke();
+    }
+
     private void Update()
     {
         timeUntilTick -= Time.deltaTime;
