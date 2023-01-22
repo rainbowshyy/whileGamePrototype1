@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, ICodeAgent
 {
     [SerializeField] private SpriteRenderer sr;
     [SerializeField] private Transform tf;
@@ -10,39 +10,32 @@ public class Enemy : MonoBehaviour
     [SerializeField] private EnemyData enemyData;
     [SerializeField] private UIEnemyCode codeUI;
 
-    private List<EnemyCodeBlock> currentCode;
+    [SerializeField] private MoveableObject move;
+
+    private List<CodeBlock> currentCode;
 
     private int healthCurrent;
     private int codeStep;
-    private int xPos;
-    private int yPos;
 
     #region Properties
-    public int XPos
+    public MoveableObject Move
     {
-        get { return xPos; }
-    }
-    public int YPos
-    {
-        get { return yPos; }
+        get { return move; }
     }
     #endregion
 
     private void Awake()
     {
-        xPos = 6;
-        yPos = 6;
-
         SetData(enemyData);
 
         GameManager.onTick += DoTick;
         GameManager.onNewTick += DoNewTick;
-
+        move.onMove += (MoveEventContext context) => { codeUI.PlaceOnScreen(context.worldPos, Vector2.zero); };
     }
 
     private void Start()
     {
-        UpdateEnemytransform();
+        move.SetPos(6, 6);
     }
 
     public void SetData(EnemyData ed)
@@ -50,28 +43,15 @@ public class Enemy : MonoBehaviour
         enemyData = ed;
         healthCurrent = ed.health;
         codeStep = 0;
-        currentCode = new List<EnemyCodeBlock>();
-        foreach (EnemyBaseCodeBlockStruct e in ed.baseCode)
+        currentCode = new List<CodeBlock>();
+        foreach (BaseCodeBlockStruct e in ed.baseCode)
         {
-            currentCode.Add(EnemyFunctions.CodeBlockFromType(this, e.code, e.param));
+            currentCode.Add(CodeBlockUtility.CodeBlockFromType(e.code, e.param, new bool[2] { true, true }));
         }
         currentCode[0].ReadyCode(this);
-    }
 
-    public void MoveEnemy(int x, int y)
-    {
-        if (MapManager.Instance.IsTileWalkable(xPos + x, yPos + y))
-        {
-            xPos += x;
-            yPos += y;
-            UpdateEnemytransform();
-        }
-    }
-
-    private void UpdateEnemytransform()
-    {
-        tf.position = new Vector3(xPos - 3, yPos - 2.375f, 0);
-        codeUI.PlaceOnScreen(tf.position, new Vector2(0, -24f));
+        move.XOffset = ed.xOffset;
+        move.YOffset = ed.yOffset;
     }
 
     private void DoTick()

@@ -5,7 +5,10 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Enemy Data", menuName = "Enemy/Create new enemyData", order = 1)]
 public class EnemyData : ScriptableObject
 {
-    public List<EnemyBaseCodeBlockStruct> baseCode;
+    public List<BaseCodeBlockStruct> baseCode;
     public string enemyName;
     public int health;
+
+    public float xOffset;
+    public float yOffset;
 }

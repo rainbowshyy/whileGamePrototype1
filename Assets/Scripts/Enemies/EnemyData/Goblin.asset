@@ -13,9 +13,11 @@ MonoBehaviour:
   m_Name: Goblin
   m_EditorClassIdentifier: 
   baseCode:
-  - code: 0
+  - code: 1
     param: 0000000000000000
   - code: 2
     param: 0000000000000000
   enemyName: Goblin
   health: 1
+  xOffset: 0
+  yOffset: 0.125

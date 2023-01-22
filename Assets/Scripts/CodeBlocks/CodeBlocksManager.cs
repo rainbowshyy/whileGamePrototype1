@@ -101,7 +101,7 @@ public class CodeBlocksManager : MonoBehaviour
 
         for (int i = 0; i < inputBlocks.Count; i++)
         {
-            inputBlocks[i].RunCode();
+            inputBlocks[i].RunCode(Player.Instance);
         }
     }
 }
