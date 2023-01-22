@@ -5,11 +5,10 @@ using UnityEngine;
 public class Projectile : MonoBehaviour, ICodeAgent
 {
     [SerializeField] private SpriteRenderer sr;
-    [SerializeField] private Transform tf;
 
     [SerializeField] private MoveableObject move;
 
-    private int codeStep;
+    public Projectiles type;
 
     #region Properties
 
@@ -21,4 +20,9 @@ public class Projectile : MonoBehaviour, ICodeAgent
     {
         Move.SetPos(6, 6);
     }
+}
+
+public enum Projectiles
+{
+    Blue
 }

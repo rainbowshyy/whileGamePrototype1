@@ -69,7 +69,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 5f2ab79784918d9438653750bf2f1396, type: 3}
-  m_Type: 2
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -353,6 +353,9 @@ MonoBehaviour:
   dropSlotPrefab: {fileID: 5965259146952554434, guid: ac7eef30b7d6fec4f913ed31bed33cbf, type: 3}
   dropSlotParent: {fileID: 8994805398492231137}
   text: {fileID: 8994805396489984119}
+  image: {fileID: 8637718239422972203}
+  spriteDefault: {fileID: 21300000, guid: 5f2ab79784918d9438653750bf2f1396, type: 3}
+  spriteActive: {fileID: 21300000, guid: 48225b60e583a8745b0361eea92ddd77, type: 3}
 --- !u!114 &799562363953568675
 MonoBehaviour:
   m_ObjectHideFlags: 0

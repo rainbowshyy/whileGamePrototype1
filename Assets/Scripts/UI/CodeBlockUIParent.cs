@@ -53,4 +53,14 @@ public class CodeBlockUIParent : MonoBehaviour
             Destroy(t.gameObject);
         }
     }
+
+    public void ActivateBlock(int id)
+    {
+        int i = 0;
+        foreach (CodeBlockUIElement codeBlock in GetComponentsInChildren<CodeBlockUIElement>())
+        {
+            codeBlock.HighLight(id == i);
+            i++;
+        }
+    }
 }

@@ -4,5 +4,6 @@ public enum Inputs
     Up,
     Left,
     Down,
-    Right
+    Right,
+    Blue
 }

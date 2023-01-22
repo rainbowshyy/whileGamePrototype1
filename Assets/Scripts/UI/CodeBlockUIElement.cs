@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(DragDrop))]
 public class CodeBlockUIElement : MonoBehaviour
@@ -11,6 +12,9 @@ public class CodeBlockUIElement : MonoBehaviour
     [SerializeField] private GameObject dropSlotPrefab;
     [SerializeField] private Transform dropSlotParent;
     [SerializeField] private TextMeshProUGUI text;
+    [SerializeField] private Image image;
+    [SerializeField] private Sprite spriteDefault;
+    [SerializeField] private Sprite spriteActive;
 
     public CodeBlock code;
 
@@ -43,6 +47,8 @@ public class CodeBlockUIElement : MonoBehaviour
 
             parent.CheckEmpty();
             parent.UpdateDropZones();
+
+            HighLight(false);
         }
     }
 
@@ -77,6 +83,20 @@ public class CodeBlockUIElement : MonoBehaviour
         foreach (Transform child in dropSlotParent)
         {
             Destroy(child.gameObject);
+        }
+    }
+
+    public void HighLight(bool active)
+    {
+        UpdateText();
+        if (active)
+        {
+            image.sprite = spriteActive;
+            text.text += " <color=#FF0000>(next)</color>";
+        }
+        else
+        {
+            image.sprite = spriteDefault;
         }
     }
 }
